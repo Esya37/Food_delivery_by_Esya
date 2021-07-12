@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/launchScreenFragment">
+
+    <fragment
+        android:id="@+id/firstScreenFragment"
+        android:name="com.example.fooddeliverybyesya.FirstScreenFragment"
+        android:label="fragment_first_screen"
+        tools:layout="@layout/fragment_first_screen" >
+        <action
+            android:id="@+id/action_firstScreenFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/launchScreenFragment"
+        android:name="com.example.fooddeliverybyesya.LaunchScreenFragment"
+        android:label="fragment_launch_screen"
+        tools:layout="@layout/fragment_launch_screen" >
+        <action
+            android:id="@+id/action_launchScreenFragment_to_firstScreenFragment"
+            app:destination="@id/firstScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainScreenFragment"
+        android:name="com.example.fooddeliverybyesya.MainScreenFragment"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_mainScreenFragment_to_tempScreenFragment"
+            app:destination="@id/tempScreenFragment" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_searchScreenFragment"
+            app:destination="@id/searchScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tempScreenFragment"
+        android:name="com.example.fooddeliverybyesya.TempScreenFragment"
+        android:label="fragment_temp_screen"
+        tools:layout="@layout/fragment_temp_screen" />
+    <fragment
+        android:id="@+id/searchScreenFragment"
+        android:name="com.example.fooddeliverybyesya.SearchScreenFragment"
+        android:label="fragment_search_screen"
+        tools:layout="@layout/fragment_search_screen" />
+</navigation>
