@@ -6,36 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF4B3A"
-    tools:context=".FirstScreenFragment" >
+    tools:context=".FirstScreenFragment">
 
     <ImageView
         android:id="@+id/toyFace2ImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/toy_faces_transparent_bg_49"
+        android:src="@drawable/toy_faces_transparent_bg_29"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9"
-        app:srcCompat="@drawable/toy_faces_transparent_bg_29" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sf_pro_rounded_black"
-        android:text="Food for Everyone"
-        android:textColor="#FFFFFF"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19"
-        app:layout_constraintWidth_percent="0.80" />
+        app:layout_constraintVertical_bias="0.9" />
 
     <ImageView
         android:id="@+id/ellipseImageView2"
@@ -55,7 +38,7 @@
         android:id="@+id/logoImageView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/bella_olonje_logo"
+        android:src="@drawable/bella_olonje_logo_small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,8 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.062"
-        app:layout_constraintWidth_percent="0.18"
-        app:srcCompat="@drawable/bella_olonje_logo_small" />
+        app:layout_constraintWidth_percent="0.18" />
 
     <ImageView
         android:id="@+id/toyFace1ImageView"
@@ -76,12 +58,13 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintVertical_bias="0.9"
+         />
 
     <ImageView
         android:id="@+id/gradientImageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="409dp"
+        android:layout_height="204dp"
         android:src="@drawable/gradient_first_screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,8 +72,41 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95"
+        app:layout_constraintVertical_bias="1.0"
         app:layout_constraintWidth_percent="1"
         app:srcCompat="@drawable/gradient_first_screen" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_pro_rounded_black"
+        android:text="Food for Everyone"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19"
+        app:layout_constraintWidth_percent="0.80" />
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button_first_screen"
+        android:text="Get started"
+        android:textAllCaps="false"
+        android:textColor="#FF460A"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.077"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95"
+        app:layout_constraintWidth_percent="0.76" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

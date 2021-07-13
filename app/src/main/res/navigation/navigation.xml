@@ -6,43 +6,37 @@
     app:startDestination="@id/launchScreenFragment">
 
     <fragment
-        android:id="@+id/firstScreenFragment"
-        android:name="com.example.fooddeliverybyesya.FirstScreenFragment"
-        android:label="fragment_first_screen"
-        tools:layout="@layout/fragment_first_screen" >
-        <action
-            android:id="@+id/action_firstScreenFragment_to_mainScreenFragment"
-            app:destination="@id/mainScreenFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/launchScreenFragment"
         android:name="com.example.fooddeliverybyesya.LaunchScreenFragment"
         android:label="fragment_launch_screen"
-        tools:layout="@layout/fragment_launch_screen" >
+        tools:layout="@layout/fragment_launch_screen">
         <action
             android:id="@+id/action_launchScreenFragment_to_firstScreenFragment"
-            app:destination="@id/firstScreenFragment" />
+            app:destination="@id/firstScreenFragment"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstScreenFragment"
+        android:name="com.example.fooddeliverybyesya.FirstScreenFragment"
+        android:label="fragment_first_screen"
+        tools:layout="@layout/fragment_first_screen">
+        <action
+            android:id="@+id/action_firstScreenFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment"
+            app:launchSingleTop="true" />
     </fragment>
     <fragment
         android:id="@+id/mainScreenFragment"
         android:name="com.example.fooddeliverybyesya.MainScreenFragment"
         android:label="fragment_main_screen"
-        tools:layout="@layout/fragment_main_screen" >
-        <action
-            android:id="@+id/action_mainScreenFragment_to_tempScreenFragment"
-            app:destination="@id/tempScreenFragment" />
+        tools:layout="@layout/fragment_main_screen">
         <action
             android:id="@+id/action_mainScreenFragment_to_searchScreenFragment"
             app:destination="@id/searchScreenFragment" />
     </fragment>
     <fragment
-        android:id="@+id/tempScreenFragment"
-        android:name="com.example.fooddeliverybyesya.TempScreenFragment"
-        android:label="fragment_temp_screen"
-        tools:layout="@layout/fragment_temp_screen" />
-    <fragment
         android:id="@+id/searchScreenFragment"
-        android:name="com.example.fooddeliverybyesya.SearchScreenFragment"
+        android:name="com.example.fooddeliverybyesya.SearchFragment"
         android:label="fragment_search_screen"
         tools:layout="@layout/fragment_search_screen" />
 </navigation>
