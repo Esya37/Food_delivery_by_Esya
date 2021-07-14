@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF4B3A"
-    tools:context=".FirstScreenFragment">
+    tools:context=".Fragments.FirstScreenFragment">
 
     <ImageView
         android:id="@+id/toyFace2ImageView"

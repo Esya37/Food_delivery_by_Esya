@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/launchScreenFragment"
-        android:name="com.example.fooddeliverybyesya.LaunchScreenFragment"
+        android:name="com.example.fooddeliverybyesya.Fragments.LaunchScreenFragment"
         android:label="fragment_launch_screen"
         tools:layout="@layout/fragment_launch_screen">
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/firstScreenFragment"
-        android:name="com.example.fooddeliverybyesya.FirstScreenFragment"
+        android:name="com.example.fooddeliverybyesya.Fragments.FirstScreenFragment"
         android:label="fragment_first_screen"
         tools:layout="@layout/fragment_first_screen">
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainScreenFragment"
-        android:name="com.example.fooddeliverybyesya.MainScreenFragment"
+        android:name="com.example.fooddeliverybyesya.Fragments.MainScreenFragment"
         android:label="fragment_main_screen"
         tools:layout="@layout/fragment_main_screen">
         <action
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchScreenFragment"
-        android:name="com.example.fooddeliverybyesya.SearchFragment"
+        android:name="com.example.fooddeliverybyesya.Fragments.SearchFragment"
         android:label="fragment_search_screen"
         tools:layout="@layout/fragment_search_screen" />
 </navigation>

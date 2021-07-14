@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.fooddeliverybyesya.HomeFragment"
+        android:name="com.example.fooddeliverybyesya.Fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/tempScreenFragment"
-        android:name="com.example.fooddeliverybyesya.TempScreenFragment"
+        android:name="com.example.fooddeliverybyesya.Fragments.TempScreenFragment"
         android:label="fragment_temp_screen"
         tools:layout="@layout/fragment_temp_screen" />
 </navigation>
