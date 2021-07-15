@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/tempScreenFragment"
-        android:name="com.example.fooddeliverybyesya.Fragments.TempScreenFragment"
+        android:name="com.example.fooddeliverybyesya.Fragments.TempScreenOrdersFragment"
         android:label="fragment_temp_screen"
-        tools:layout="@layout/fragment_temp_screen" />
+        tools:layout="@layout/fragment_temp_screen_orders" />
 </navigation>

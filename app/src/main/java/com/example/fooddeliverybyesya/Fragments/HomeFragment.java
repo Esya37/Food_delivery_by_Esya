@@ -5,9 +5,14 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.fooddeliverybyesya.R;
@@ -65,6 +71,23 @@ public class HomeFragment extends Fragment {
         categoryNameTextView.setText(model.getCategories().getValue().get(0).getStrCategory());
         categoryImageView = inflatedView.findViewById(R.id.categoryImageView);
         Picasso.with(categoryImageView.getContext()).load(model.getCategories().getValue().get(0).getStrCategoryThumb()).resize((int) (Resources.getSystem().getDisplayMetrics().widthPixels * 0.5), 0).into(categoryImageView);
+
+        SearchView searchView = inflatedView.findViewById(R.id.searchView);
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    searchView.clearFocus();
+                    model.setUserClickOnSearchView(true);
+                }
+            }
+        });
+//        searchView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                model.setUserClickOnSearchView(true);
+//            }
+//        });
 
         // Inflate the layout for this fragment
         return inflatedView;
