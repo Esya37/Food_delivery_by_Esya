@@ -13,6 +13,8 @@
         <action
             android:id="@+id/action_launchScreenFragment_to_firstScreenFragment"
             app:destination="@id/firstScreenFragment"
+            app:enterAnim="@anim/translate_from_bottom_to_top"
+            app:exitAnim="@anim/translate_from_nothing_to_nothing"
             app:launchSingleTop="true" />
     </fragment>
     <fragment
@@ -23,7 +25,11 @@
         <action
             android:id="@+id/action_firstScreenFragment_to_mainScreenFragment"
             app:destination="@id/mainScreenFragment"
-            app:launchSingleTop="true" />
+            app:enterAnim="@anim/translate_from_bottom_to_top"
+            app:exitAnim="@anim/translate_from_nothing_to_nothing"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/mainScreenFragment"
@@ -33,7 +39,11 @@
         <action
             android:id="@+id/action_mainScreenFragment_to_searchScreenFragment"
             app:destination="@id/searchScreenFragment"
-            app:launchSingleTop="true" />
+            app:enterAnim="@anim/translate_from_bottom_to_top"
+            app:exitAnim="@anim/translate_from_nothing_to_nothing"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/translate_from_nothing_to_nothing"
+            app:popExitAnim="@anim/translate_from_top_to_bottom" />
     </fragment>
     <fragment
         android:id="@+id/searchScreenFragment"

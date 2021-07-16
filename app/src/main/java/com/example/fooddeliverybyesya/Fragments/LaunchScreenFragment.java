@@ -1,5 +1,8 @@
 package com.example.fooddeliverybyesya.Fragments;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,12 +15,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.fooddeliverybyesya.Models.Categories;
 import com.example.fooddeliverybyesya.Models.Category;
 import com.example.fooddeliverybyesya.Models.SearchResult;
 import com.example.fooddeliverybyesya.R;
 import com.example.fooddeliverybyesya.ViewModels.MainActivityViewModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +49,9 @@ public class LaunchScreenFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         model = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
 
-//TODO Проверить подключение к интернету для избежания бесконечной загрузки
+        if(!hasConnection(getContext())){
+            Toast.makeText(getContext(),"Check your Internet connection and try again", Toast.LENGTH_SHORT).show();
+        }
         model.getCategories().observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categories) {
@@ -53,25 +60,13 @@ public class LaunchScreenFragment extends Fragment {
                 }
             }
         });
-//        model.getSearchResult("hello").observe(getViewLifecycleOwner(), new Observer<List<SearchResult>>() {
-//            @Override
-//            public void onChanged(List<SearchResult> searchResults) {
-//                if(searchResults==null){
-//                    Log.d("searchResultTag", "Ничего не найдено");
-//                    return;
-//                }
-//                for(SearchResult searchResult : searchResults){
-//                    Log.d("searchResultTag", searchResult.getStrMeal());
-//                }
-//            }
-//        });
+
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_launch_screen, container, false);
     }
 
     NavController navController;
-    ExecutorService executorService;
     private MainActivityViewModel model;
 
     @Override
@@ -79,6 +74,20 @@ public class LaunchScreenFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
 
+    }
+
+    public static boolean hasConnection(final Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (wifiInfo != null && wifiInfo.isConnected()) {
+            return true;
+        }
+        wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (wifiInfo != null && wifiInfo.isConnected()) {
+            return true;
+        }
+        wifiInfo = cm.getActiveNetworkInfo();
+        return wifiInfo != null && wifiInfo.isConnected();
     }
 
 }

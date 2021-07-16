@@ -15,6 +15,7 @@ import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionInflater;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //TODO Посмотреть, работает ли это
+        setSharedElementReturnTransition(TransitionInflater.from(getContext()).inflateTransition(R.transition.search_view_transition));
+        setReturnTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
     }
 
     View inflatedView;
@@ -52,6 +56,7 @@ public class HomeFragment extends Fragment {
     MainActivityViewModel model;
     TextView categoryNameTextView;
     ImageView categoryImageView;
+    SearchView searchView;
 
 
     @Override
@@ -72,7 +77,7 @@ public class HomeFragment extends Fragment {
         categoryImageView = inflatedView.findViewById(R.id.categoryImageView);
         Picasso.with(categoryImageView.getContext()).load(model.getCategories().getValue().get(0).getStrCategoryThumb()).resize((int) (Resources.getSystem().getDisplayMetrics().widthPixels * 0.5), 0).into(categoryImageView);
 
-        SearchView searchView = inflatedView.findViewById(R.id.searchView);
+        searchView = inflatedView.findViewById(R.id.searchView);
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

@@ -3,20 +3,30 @@ package com.example.fooddeliverybyesya.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.Navigator;
+import androidx.navigation.fragment.FragmentNavigator;
+import androidx.transition.TransitionInflater;
 
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import com.example.fooddeliverybyesya.R;
 import com.example.fooddeliverybyesya.ViewModels.MainActivityViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainScreenFragment extends Fragment {
 
@@ -31,6 +41,10 @@ public class MainScreenFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        postponeEnterTransition();
+        //TODO Посмотреть, работает ли это
+        setSharedElementReturnTransition(TransitionInflater.from(getContext()).inflateTransition(R.transition.search_view_transition));
+        setReturnTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
     }
 
     View inflatedView;
@@ -42,6 +56,7 @@ public class MainScreenFragment extends Fragment {
     TempScreenProfileFragment tempScreenProfileFragment;
     NavController navController;
     MainActivityViewModel model;
+    FragmentContainerView fragmentContainerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -128,31 +143,47 @@ public class MainScreenFragment extends Fragment {
                 if (aBoolean) {
                     model.isUserClickOnSearchView().removeObserver(this::onChanged);
                     model.setUserClickOnSearchView(false);
-                    navController.navigate(R.id.action_mainScreenFragment_to_searchScreenFragment);
+                    //navController.navigate(R.id.action_mainScreenFragment_to_searchScreenFragment);
+                    Map<View, String> map = new HashMap<>();
+                    map.put(homeFragment.searchView, homeFragment.searchView.getTransitionName());
+
+                    //TODO Посмотреть, работает ли это
+                    setSharedElementReturnTransition(TransitionInflater.from(getContext()).inflateTransition(R.transition.search_view_transition));
+                    setReturnTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+
+                    navController.navigate(R.id.action_mainScreenFragment_to_searchScreenFragment,
+                            null,
+                            null,
+                            new FragmentNavigator.Extras.Builder().addSharedElements(map).build());
                 }
             }
         });
 
+        fragmentContainerView = inflatedView.findViewById(R.id.fragmentContainerView2);
+        fragmentContainerView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                fragmentContainerView.getViewTreeObserver().removeOnPreDrawListener(this::onPreDraw);
+                startPostponedEnterTransition();
+                return true;
+            }
+        });
 
         // Inflate the layout for this fragment
         return inflatedView;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        NavigationUI.onNavDestinationSelected(item, navController);
-//        return super.onOptionsItemSelected(item);
-//    }
-
-    public void test() {
-        fragmentManager.beginTransaction().remove(this).commit();
-        navController.getCurrentDestination();
-    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        //NavigationUI.setupWithNavController(bottomNavigationView, navController);
+        //startPostponedEnterTransition();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        //startPostponedEnterTransition();
     }
 }

@@ -53,7 +53,7 @@ public class RecyclerViewAdapterSearchResult extends RecyclerView.Adapter<Recycl
         holder.mealNameTextView.setText(searchResult.getStrMeal());
         Picasso.with(holder.mealImageView.getContext()).load(searchResult.getStrMealThumb()).resize((int) (Resources.getSystem().getDisplayMetrics().widthPixels * 0.4),0).transform(new Transformation() {
 
-            private int mRadius = (int) (Resources.getSystem().getDisplayMetrics().widthPixels * 0.2);
+            private final int mRadius = (int) (Resources.getSystem().getDisplayMetrics().widthPixels * 0.18);
             @Override
             public Bitmap transform(Bitmap source) {
                 Bitmap output = Bitmap.createBitmap(source.getWidth(), source.getHeight(),
@@ -72,10 +72,10 @@ public class RecyclerViewAdapterSearchResult extends RecyclerView.Adapter<Recycl
                 paint.setColor(Color.parseColor("#BAB399"));
 
                 if (mRadius == 0) {
-                    canvas.drawCircle(source.getWidth() / 2 + 0.7f, source.getHeight() / 2 + 0.7f,
-                            source.getWidth() / 2 - 1.1f, paint);
+                    canvas.drawCircle(source.getWidth() / 2f + 0.7f, source.getHeight() / 2f + 0.7f,
+                            source.getWidth() / 2f - 1.1f, paint);
                 } else {
-                    canvas.drawCircle(source.getWidth() / 2 + 0.7f, source.getHeight() / 2 + 0.7f,
+                    canvas.drawCircle(source.getWidth() / 2f + 0.7f, source.getHeight() / 2f + 0.7f,
                             mRadius, paint);
                 }
 
@@ -91,7 +91,7 @@ public class RecyclerViewAdapterSearchResult extends RecyclerView.Adapter<Recycl
 
             @Override
             public String key() {
-                return "circular" + String.valueOf(mRadius);
+                return "circular" + mRadius;
             }
         }).into(holder.mealImageView);
     }

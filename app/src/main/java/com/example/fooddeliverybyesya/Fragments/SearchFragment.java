@@ -1,5 +1,6 @@
 package com.example.fooddeliverybyesya.Fragments;
 
+import android.app.Instrumentation;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,10 +13,15 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionInflater;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -41,6 +47,10 @@ public class SearchFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        postponeEnterTransition();
+        setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(R.transition.search_view_transition));
+        setEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.slide_bottom));
+
     }
 
     View inflatedView;
@@ -50,6 +60,7 @@ public class SearchFragment extends Fragment {
     RecyclerViewAdapterSearchResult recyclerViewAdapter;
     TextView countSearchResultsTextView;
     List<SearchResult> searchResultsList;
+    Button returnSearchScreenButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,8 +78,6 @@ public class SearchFragment extends Fragment {
         recyclerViewAdapter = new RecyclerViewAdapterSearchResult(inflatedView.getContext(), searchResultsList);
         recyclerView.setAdapter(recyclerViewAdapter);
 
-        //TODO Сделать список результатов красивым
-
         searchView = inflatedView.findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -80,12 +89,11 @@ public class SearchFragment extends Fragment {
                             countSearchResultsTextView.setText("Found " + searchResults.size() + " results");
                             searchResultsList.clear();
                             searchResultsList.addAll(searchResults);
-                            recyclerViewAdapter.notifyDataSetChanged();
                         } else {
                             countSearchResultsTextView.setText("Found 0 results");
                             searchResultsList.clear();
-                            recyclerViewAdapter.notifyDataSetChanged();
                         }
+                        recyclerViewAdapter.notifyDataSetChanged();
 
                     }
                 });
@@ -98,9 +106,31 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        returnSearchScreenButton = inflatedView.findViewById(R.id.returnSearchScreenButton);
+        returnSearchScreenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
+        searchView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                searchView.getViewTreeObserver().removeOnPreDrawListener(this::onPreDraw);
+                startPostponedEnterTransition();
+                return true;
+            }
+        });
 
         // Inflate the layout for this fragment
         return inflatedView;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //startPostponedEnterTransition();
+    }
 }
