@@ -51,9 +51,9 @@ public class RecyclerViewAdapterSearchResult extends RecyclerView.Adapter<Recycl
         searchResult = searchResults.get(position);
         holder.categoryNameTextView.setText(searchResult.getStrCategory());
         holder.mealNameTextView.setText(searchResult.getStrMeal());
-        Picasso.with(holder.mealImageView.getContext()).load(searchResult.getStrMealThumb()).resize((int) (Resources.getSystem().getDisplayMetrics().widthPixels * 0.4),0).transform(new Transformation() {
+        Picasso.with(holder.mealImageView.getContext()).load(searchResult.getStrMealThumb()).transform(new Transformation() {
 
-            private final int mRadius = (int) (Resources.getSystem().getDisplayMetrics().widthPixels * 0.18);
+            private final int mRadius = (int) (Resources.getSystem().getDisplayMetrics().widthPixels * 0.25);
             @Override
             public Bitmap transform(Bitmap source) {
                 Bitmap output = Bitmap.createBitmap(source.getWidth(), source.getHeight(),

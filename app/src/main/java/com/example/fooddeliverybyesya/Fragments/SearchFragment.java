@@ -1,6 +1,10 @@
 package com.example.fooddeliverybyesya.Fragments;
 
 import android.app.Instrumentation;
+import android.content.Context;
+import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +28,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fooddeliverybyesya.Models.SearchResult;
 import com.example.fooddeliverybyesya.R;
@@ -82,6 +87,9 @@ public class SearchFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                if (!hasConnection(getContext())) {
+                    Toast.makeText(getContext(), "Check your Internet connection and try again", Toast.LENGTH_SHORT).show();
+                }
                 model.getSearchResult(query).observe(getViewLifecycleOwner(), new Observer<List<SearchResult>>() {
                     @Override
                     public void onChanged(List<SearchResult> searchResults) {
@@ -132,5 +140,19 @@ public class SearchFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //startPostponedEnterTransition();
+    }
+
+    public static boolean hasConnection(final Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (wifiInfo != null && wifiInfo.isConnected()) {
+            return true;
+        }
+        wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (wifiInfo != null && wifiInfo.isConnected()) {
+            return true;
+        }
+        wifiInfo = cm.getActiveNetworkInfo();
+        return wifiInfo != null && wifiInfo.isConnected();
     }
 }
