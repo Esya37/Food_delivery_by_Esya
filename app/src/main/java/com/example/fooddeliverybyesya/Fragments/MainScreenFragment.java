@@ -1,6 +1,11 @@
 package com.example.fooddeliverybyesya.Fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
@@ -9,15 +14,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.Navigator;
 import androidx.navigation.fragment.FragmentNavigator;
-import androidx.transition.TransitionInflater;
-
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 
 import com.example.fooddeliverybyesya.R;
 import com.example.fooddeliverybyesya.ViewModels.MainActivityViewModel;
@@ -25,8 +22,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class MainScreenFragment extends Fragment {
 
@@ -42,9 +37,6 @@ public class MainScreenFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         postponeEnterTransition();
-        //TODO Посмотреть, работает ли это
-        setSharedElementReturnTransition(TransitionInflater.from(getContext()).inflateTransition(R.transition.search_view_transition));
-        setReturnTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
     }
 
     View inflatedView;
@@ -112,25 +104,21 @@ public class MainScreenFragment extends Fragment {
                         homeFragment = HomeFragment.newInstance();
                         fragmentManager.beginTransaction().replace(R.id.fragmentContainerView2, homeFragment).commit();
                         model.setSelectedMenuItem(0);
-                        //item.setIcon(R.drawable.ic_home_selected);
                         break;
                     case R.id.heart:
                         tempScreenOrdersFragment = TempScreenOrdersFragment.newInstance();
                         fragmentManager.beginTransaction().replace(R.id.fragmentContainerView2, tempScreenOrdersFragment).commit();
                         model.setSelectedMenuItem(1);
-                        //item.setIcon(R.drawable.ic_heart_selected);
                         break;
                     case R.id.user:
                         tempScreenHistoryFragment = TempScreenHistoryFragment.newInstance();
                         fragmentManager.beginTransaction().replace(R.id.fragmentContainerView2, tempScreenHistoryFragment).commit();
                         model.setSelectedMenuItem(2);
-                        //item.setIcon(R.drawable.ic_user_selected);
                         break;
                     case R.id.history:
                         tempScreenProfileFragment = TempScreenProfileFragment.newInstance();
                         fragmentManager.beginTransaction().replace(R.id.fragmentContainerView2, tempScreenProfileFragment).commit();
                         model.setSelectedMenuItem(3);
-                        //item.setIcon(R.drawable.ic_sharp_history_selected);
                         break;
                 }
                 return true;
@@ -141,15 +129,11 @@ public class MainScreenFragment extends Fragment {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    model.isUserClickOnSearchView().removeObserver(this::onChanged);
+                    model.isUserClickOnSearchView().removeObserver(this);
                     model.setUserClickOnSearchView(false);
                     //navController.navigate(R.id.action_mainScreenFragment_to_searchScreenFragment);
                     Map<View, String> map = new HashMap<>();
                     map.put(homeFragment.searchView, homeFragment.searchView.getTransitionName());
-
-                    //TODO Посмотреть, работает ли это
-                    setSharedElementReturnTransition(TransitionInflater.from(getContext()).inflateTransition(R.transition.search_view_transition));
-                    setReturnTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
 
                     navController.navigate(R.id.action_mainScreenFragment_to_searchScreenFragment,
                             null,
@@ -163,7 +147,7 @@ public class MainScreenFragment extends Fragment {
         fragmentContainerView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
-                fragmentContainerView.getViewTreeObserver().removeOnPreDrawListener(this::onPreDraw);
+                fragmentContainerView.getViewTreeObserver().removeOnPreDrawListener(this);
                 startPostponedEnterTransition();
                 return true;
             }
@@ -178,12 +162,6 @@ public class MainScreenFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        //startPostponedEnterTransition();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        //startPostponedEnterTransition();
-    }
 }

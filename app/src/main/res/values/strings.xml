@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Food delivery by Esya</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="food_for_everyone">Food for Everyone</string>
     <string name="get_started">Get started</string>
-    <string name="delicious_food_for_you">Delicious\nfood for you</string>
     <string name="search">Search</string>
     <string name="found_0_results">Found 0 results</string>
     <string name="history">History</string>

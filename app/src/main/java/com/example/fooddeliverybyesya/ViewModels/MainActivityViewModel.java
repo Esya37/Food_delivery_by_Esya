@@ -15,8 +15,8 @@ public class MainActivityViewModel extends ViewModel {
     private final DeliveryRepository deliveryRepository;
     private LiveData<List<Category>> categoryList;
     private LiveData<List<SearchResult>> searchResultList;
-    private MutableLiveData<Integer> selectedMenuItem;
-    private MutableLiveData<Boolean> UserClickOnSearchView;
+    private final MutableLiveData<Integer> selectedMenuItem;
+    private final MutableLiveData<Boolean> UserClickOnSearchView;
 
     public MainActivityViewModel() {
         deliveryRepository = new DeliveryRepository();

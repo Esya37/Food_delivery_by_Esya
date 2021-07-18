@@ -17,9 +17,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fooddeliverybyesya.Models.Category;
 import com.example.fooddeliverybyesya.Models.SearchResult;
-import com.google.android.material.shape.RoundedCornerTreatment;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -32,12 +30,10 @@ public class RecyclerViewAdapterSearchResult extends RecyclerView.Adapter<Recycl
     private RecyclerViewAdapter.ItemClickListener clickListener;
 
     private SearchResult searchResult;
-    private int selectedCategoryPosition;
 
     public RecyclerViewAdapterSearchResult(Context context, List<SearchResult> list) {
         this.searchResults = list;
         this.inflater = LayoutInflater.from(context);
-        selectedCategoryPosition = 0;
     }
 
     @Override

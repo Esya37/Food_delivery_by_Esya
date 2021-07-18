@@ -55,7 +55,6 @@ public class TempScreenProfileFragment extends Fragment {
                 homeFragment = HomeFragment.newInstance();
                 fragmentManager.beginTransaction().replace(R.id.fragmentContainerView2, homeFragment).commit();
 
-                // bottomNavigationView.getMenu().getItem(0).setIcon(R.drawable.ic_home_selected);
             }
         });
 

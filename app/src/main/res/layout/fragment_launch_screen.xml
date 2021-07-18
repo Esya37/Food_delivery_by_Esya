@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_rounded_black"
-        android:text="Food for Everyone"
+        android:text="@string/food_for_everyone"
         android:textColor="#FA4A0C"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"

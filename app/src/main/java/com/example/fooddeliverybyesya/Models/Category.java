@@ -1,7 +1,5 @@
 package com.example.fooddeliverybyesya.Models;
 
-import com.google.gson.annotations.SerializedName;
-
 public class Category {
 
     private int idCategory;

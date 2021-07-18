@@ -1,28 +1,18 @@
 package com.example.fooddeliverybyesya.Fragments;
 
 import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.TransitionInflater;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliverybyesya.R;
 import com.example.fooddeliverybyesya.RecyclerViewAdapter;
@@ -45,9 +35,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //TODO Посмотреть, работает ли это
-        setSharedElementReturnTransition(TransitionInflater.from(getContext()).inflateTransition(R.transition.search_view_transition));
-        setReturnTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
     }
 
     View inflatedView;
@@ -65,7 +52,7 @@ public class HomeFragment extends Fragment {
 
         model = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
 
-        recyclerView = (RecyclerView)inflatedView.findViewById(R.id.categoriesRecyclerView);
+        recyclerView = inflatedView.findViewById(R.id.categoriesRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(inflatedView.getContext(), RecyclerView.HORIZONTAL, false));
         recyclerViewAdapter = new RecyclerViewAdapter(inflatedView.getContext(), model.getCategories().getValue());
@@ -87,12 +74,6 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-//        searchView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                model.setUserClickOnSearchView(true);
-//            }
-//        });
 
         // Inflate the layout for this fragment
         return inflatedView;

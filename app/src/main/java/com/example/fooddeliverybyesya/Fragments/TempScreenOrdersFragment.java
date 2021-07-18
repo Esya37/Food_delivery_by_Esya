@@ -1,22 +1,17 @@
 package com.example.fooddeliverybyesya.Fragments;
 
-import android.graphics.Path;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
-import androidx.constraintlayout.solver.state.State;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.Button;
-
 import com.example.fooddeliverybyesya.R;
 import com.example.fooddeliverybyesya.ViewModels.MainActivityViewModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class TempScreenOrdersFragment extends Fragment {
 
@@ -56,7 +51,6 @@ public class TempScreenOrdersFragment extends Fragment {
                 homeFragment = HomeFragment.newInstance();
                 fragmentManager.beginTransaction().replace(R.id.fragmentContainerView2, homeFragment).commit();
 
-               // bottomNavigationView.getMenu().getItem(0).setIcon(R.drawable.ic_home_selected);
             }
         });
 

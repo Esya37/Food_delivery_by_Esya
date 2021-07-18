@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayoutHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2"
+    android:background="#F5F5F8"
     tools:context=".Fragments.HomeFragment">
 
     <TextView
@@ -16,6 +16,7 @@
         android:text="Delicious\nfood for you"
         android:textColor="#000000"
         android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.29"

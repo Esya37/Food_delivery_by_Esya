@@ -12,7 +12,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class DeliveryRepository {
 
@@ -20,8 +19,8 @@ public class DeliveryRepository {
     private Call<Categories> callCategory;
     private Call<SearchResults> callSearchResult;
 
-    private MutableLiveData<List<Category>> categoryList;
-    private MutableLiveData<List<SearchResult>> searchResultList;
+    private final MutableLiveData<List<Category>> categoryList;
+    private final MutableLiveData<List<SearchResult>> searchResultList;
 
     public DeliveryRepository() {
         deliveryService = RetrofitService.getDeliveryService();

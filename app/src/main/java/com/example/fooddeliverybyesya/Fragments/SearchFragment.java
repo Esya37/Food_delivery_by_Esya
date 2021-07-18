@@ -1,38 +1,27 @@
 package com.example.fooddeliverybyesya.Fragments;
 
-import android.app.Instrumentation;
 import android.content.Context;
-import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.TransitionInflater;
-
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionInflater;
+
 import com.example.fooddeliverybyesya.Models.SearchResult;
 import com.example.fooddeliverybyesya.R;
-import com.example.fooddeliverybyesya.RecyclerViewAdapter;
 import com.example.fooddeliverybyesya.RecyclerViewAdapterSearchResult;
 import com.example.fooddeliverybyesya.ViewModels.MainActivityViewModel;
 
@@ -78,7 +67,7 @@ public class SearchFragment extends Fragment {
 
         searchResultsList = new ArrayList<>();
 
-        recyclerView = (RecyclerView) inflatedView.findViewById(R.id.searchResultRecyclerView);
+        recyclerView = inflatedView.findViewById(R.id.searchResultRecyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(inflatedView.getContext(), 2));
         recyclerViewAdapter = new RecyclerViewAdapterSearchResult(inflatedView.getContext(), searchResultsList);
         recyclerView.setAdapter(recyclerViewAdapter);
@@ -125,7 +114,7 @@ public class SearchFragment extends Fragment {
         searchView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
-                searchView.getViewTreeObserver().removeOnPreDrawListener(this::onPreDraw);
+                searchView.getViewTreeObserver().removeOnPreDrawListener(this);
                 startPostponedEnterTransition();
                 return true;
             }
@@ -133,13 +122,6 @@ public class SearchFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return inflatedView;
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        //startPostponedEnterTransition();
     }
 
     public static boolean hasConnection(final Context context) {
