@@ -13,9 +13,13 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionInflater;
@@ -42,8 +46,8 @@ public class SearchFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         postponeEnterTransition();
-        setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(R.transition.search_view_transition));
-        setEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.slide_bottom));
+        //setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(R.transition.search_view_transition));
+        //setEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.slide_bottom));
 
     }
 
@@ -137,4 +141,5 @@ public class SearchFragment extends Fragment {
         wifiInfo = cm.getActiveNetworkInfo();
         return wifiInfo != null && wifiInfo.isConnected();
     }
+
 }

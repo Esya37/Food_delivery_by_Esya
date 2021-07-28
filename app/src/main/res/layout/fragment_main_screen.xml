@@ -25,12 +25,13 @@
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_navigation_view_menu" />
 
-    <androidx.fragment.app.FragmentContainerView
+    <fragment
         android:id="@+id/fragmentContainerView2"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:defaultNavHost="true"
+        app:defaultNavHost="false"
+        app:navGraph="@navigation/navigation_bottom_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.88"

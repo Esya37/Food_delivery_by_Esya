@@ -11,12 +11,14 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.fooddeliverybyesya.R;
-import com.example.fooddeliverybyesya.RecyclerViewAdapter;
 import com.example.fooddeliverybyesya.ViewModels.MainActivityViewModel;
+import com.example.fooddeliverybyesya.ViewPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.squareup.picasso.Picasso;
 
 public class HomeFragment extends Fragment {
@@ -39,11 +41,12 @@ public class HomeFragment extends Fragment {
 
     View inflatedView;
     RecyclerView recyclerView;
-    RecyclerViewAdapter recyclerViewAdapter;
     MainActivityViewModel model;
     TextView categoryNameTextView;
     ImageView categoryImageView;
     SearchView searchView;
+    ViewPager2 viewPager;
+    TabLayout tabLayout;
 
 
     @Override
@@ -51,18 +54,6 @@ public class HomeFragment extends Fragment {
         inflatedView = inflater.inflate(R.layout.fragment_home, container, false);
 
         model = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
-
-        recyclerView = inflatedView.findViewById(R.id.categoriesRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(inflatedView.getContext(), RecyclerView.HORIZONTAL, false));
-        recyclerViewAdapter = new RecyclerViewAdapter(inflatedView.getContext(), model.getCategories().getValue());
-        recyclerViewAdapter.setClickListener(this::onItemClick);
-        recyclerView.setAdapter(recyclerViewAdapter);
-
-        categoryNameTextView = inflatedView.findViewById(R.id.categoryNameTextView);
-        categoryNameTextView.setText(model.getCategories().getValue().get(0).getStrCategory());
-        categoryImageView = inflatedView.findViewById(R.id.categoryImageView);
-        Picasso.with(categoryImageView.getContext()).load(model.getCategories().getValue().get(0).getStrCategoryThumb()).resize((int) (Resources.getSystem().getDisplayMetrics().widthPixels * 0.5), 0).into(categoryImageView);
 
         searchView = inflatedView.findViewById(R.id.searchView);
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
@@ -74,6 +65,17 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
+        viewPager = inflatedView.findViewById(R.id.viewPager);
+        viewPager.setAdapter(new ViewPagerAdapter(getChildFragmentManager(), getLifecycle(), model.getCategories().getValue().size()));
+
+        tabLayout = inflatedView.findViewById(R.id.tabLayout);
+        new TabLayoutMediator(tabLayout, viewPager,
+                new TabLayoutMediator.TabConfigurationStrategy() {
+                    @Override public void onConfigureTab(TabLayout.Tab tab, int position) {
+                        tab.setText(model.getCategories().getValue().get(position).getStrCategory());
+                    }
+                }).attach();
 
         // Inflate the layout for this fragment
         return inflatedView;

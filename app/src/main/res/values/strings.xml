@@ -13,4 +13,6 @@
     <string name="profile">Profile</string>
     <string name="no_profile_yet">No profile yet</string>
     <string name="hit_the_orange_button_profile">Hit the orange button down below to Create an profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

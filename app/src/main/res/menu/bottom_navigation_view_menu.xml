@@ -3,17 +3,17 @@
     <item android:icon="@drawable/ic_home"
         android:title=""
         android:checkable="true"
-        android:id="@+id/home" />
+        android:id="@+id/homeFragment" />
     <item android:icon="@drawable/ic_heart"
         android:title=""
         android:checkable="true"
-        android:id="@+id/heart"/>
+        android:id="@+id/tempScreenOrdersFragment"/>
     <item android:icon="@drawable/ic_user"
         android:checkable="true"
         android:title=""
-        android:id="@+id/user" />
+        android:id="@+id/tempScreenProfileFragment" />
     <item android:icon="@drawable/ic_sharp_history"
         android:checkable="true"
         android:title=""
-        android:id="@+id/history" />
+        android:id="@+id/tempScreenHistoryFragment" />
 </menu>

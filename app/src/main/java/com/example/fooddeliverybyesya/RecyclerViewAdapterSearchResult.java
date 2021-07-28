@@ -27,7 +27,6 @@ public class RecyclerViewAdapterSearchResult extends RecyclerView.Adapter<Recycl
 
     private final LayoutInflater inflater;
     private final List<SearchResult> searchResults;
-    private RecyclerViewAdapter.ItemClickListener clickListener;
 
     private SearchResult searchResult;
 

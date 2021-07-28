@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_bottom_menu"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.fooddeliverybyesya.Fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/tempScreenHistoryFragment"
+        android:name="com.example.fooddeliverybyesya.Fragments.TempScreenHistoryFragment"
+        android:label="fragment_temp_screen_history"
+        tools:layout="@layout/fragment_temp_screen_history" />
+    <fragment
+        android:id="@+id/tempScreenOrdersFragment"
+        android:name="com.example.fooddeliverybyesya.Fragments.TempScreenOrdersFragment"
+        android:label="fragment_temp_screen_orders"
+        tools:layout="@layout/fragment_temp_screen_orders"/>
+    <fragment
+        android:id="@+id/tempScreenProfileFragment"
+        android:name="com.example.fooddeliverybyesya.Fragments.TempScreenProfileFragment"
+        android:label="fragment_temp_screen_profile"
+        tools:layout="@layout/fragment_temp_screen_profile"/>
+</navigation>
