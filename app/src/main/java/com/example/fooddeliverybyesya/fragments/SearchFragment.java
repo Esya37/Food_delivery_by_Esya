@@ -1,8 +1,5 @@
-package com.example.fooddeliverybyesya.Fragments;
+package com.example.fooddeliverybyesya.fragments;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,26 +10,19 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.TransitionInflater;
 
-import com.example.fooddeliverybyesya.Models.SearchResult;
 import com.example.fooddeliverybyesya.R;
 import com.example.fooddeliverybyesya.RecyclerViewAdapterSearchResult;
-import com.example.fooddeliverybyesya.ViewModels.MainActivityViewModel;
+import com.example.fooddeliverybyesya.models.SearchResult;
+import com.example.fooddeliverybyesya.view_models.MainActivityViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends BaseFragment {
 
     public SearchFragment() {
         // Required empty public constructor
@@ -46,19 +36,17 @@ public class SearchFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         postponeEnterTransition();
-        //setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(R.transition.search_view_transition));
-        //setEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.slide_bottom));
 
     }
 
-    View inflatedView;
-    SearchView searchView;
-    MainActivityViewModel model;
-    RecyclerView recyclerView;
-    RecyclerViewAdapterSearchResult recyclerViewAdapter;
-    TextView countSearchResultsTextView;
-    List<SearchResult> searchResultsList;
-    Button returnSearchScreenButton;
+    private View inflatedView;
+    private SearchView searchView;
+    private MainActivityViewModel model;
+    private RecyclerView recyclerView;
+    private RecyclerViewAdapterSearchResult recyclerViewAdapter;
+    private TextView countSearchResultsTextView;
+    private List<SearchResult> searchResultsList;
+    private Button returnSearchScreenButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -83,20 +71,17 @@ public class SearchFragment extends Fragment {
                 if (!hasConnection(getContext())) {
                     Toast.makeText(getContext(), "Check your Internet connection and try again", Toast.LENGTH_SHORT).show();
                 }
-                model.getSearchResult(query).observe(getViewLifecycleOwner(), new Observer<List<SearchResult>>() {
-                    @Override
-                    public void onChanged(List<SearchResult> searchResults) {
-                        if (searchResults != null) {
-                            countSearchResultsTextView.setText("Found " + searchResults.size() + " results");
-                            searchResultsList.clear();
-                            searchResultsList.addAll(searchResults);
-                        } else {
-                            countSearchResultsTextView.setText("Found 0 results");
-                            searchResultsList.clear();
-                        }
-                        recyclerViewAdapter.notifyDataSetChanged();
-
+                model.getSearchResult(query).observe(getViewLifecycleOwner(), searchResults -> {
+                    if (searchResults != null) {
+                        countSearchResultsTextView.setText("Found " + searchResults.size() + " results");
+                        searchResultsList.clear();
+                        searchResultsList.addAll(searchResults);
+                    } else {
+                        countSearchResultsTextView.setText("Found 0 results");
+                        searchResultsList.clear();
                     }
+                    recyclerViewAdapter.notifyDataSetChanged();
+
                 });
                 return false;
             }
@@ -108,12 +93,12 @@ public class SearchFragment extends Fragment {
         });
 
         returnSearchScreenButton = inflatedView.findViewById(R.id.returnSearchScreenButton);
-        returnSearchScreenButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
-            }
+        returnSearchScreenButton.setOnClickListener(v -> {
+            searchView.clearFocus();
+            getActivity().onBackPressed();
         });
+
+
 
         searchView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
@@ -128,18 +113,9 @@ public class SearchFragment extends Fragment {
         return inflatedView;
     }
 
-    public static boolean hasConnection(final Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (wifiInfo != null && wifiInfo.isConnected()) {
-            return true;
-        }
-        wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if (wifiInfo != null && wifiInfo.isConnected()) {
-            return true;
-        }
-        wifiInfo = cm.getActiveNetworkInfo();
-        return wifiInfo != null && wifiInfo.isConnected();
+    @Override
+    public void onPause() {
+        searchView.clearFocus();
+        super.onPause();
     }
-
 }

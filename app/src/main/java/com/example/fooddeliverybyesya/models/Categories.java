@@ -1,4 +1,4 @@
-package com.example.fooddeliverybyesya.Models;
+package com.example.fooddeliverybyesya.models;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -13,7 +13,4 @@ public class Categories {
         return categoryList;
     }
 
-    public void setCategoryList(List<Category> categoryList) {
-        this.categoryList = categoryList;
-    }
 }

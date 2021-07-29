@@ -1,15 +1,11 @@
 package com.example.fooddeliverybyesya;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.fooddeliverybyesya.Fragments.CategoriesCardFragment;
-import com.example.fooddeliverybyesya.Fragments.HomeFragment;
+import com.example.fooddeliverybyesya.fragments.CategoriesCardFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 

@@ -5,8 +5,8 @@
     android:id="@+id/constraintLayoutHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F8"
-    tools:context=".Fragments.HomeFragment">
+    android:background="@color/gray"
+    tools:context=".fragments.HomeFragment">
 
     <TextView
         android:id="@+id/textView2"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_rounded_regular"
         android:text="Delicious\nfood for you"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,9 +66,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchView"
-        app:tabIndicatorColor="#FA4A0C"
+        app:tabIndicatorColor="@color/orange"
         app:tabMode="scrollable"
-        app:tabSelectedTextColor="#FA4A0C"
+        app:tabSelectedTextColor="@color/orange"
         app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
 
     <androidx.viewpager2.widget.ViewPager2

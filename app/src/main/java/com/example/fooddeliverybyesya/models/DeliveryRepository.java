@@ -1,11 +1,11 @@
-package com.example.fooddeliverybyesya.Models;
+package com.example.fooddeliverybyesya.models;
 
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.fooddeliverybyesya.Services.DeliveryService;
-import com.example.fooddeliverybyesya.Services.RetrofitService;
+import com.example.fooddeliverybyesya.services.DeliveryService;
+import com.example.fooddeliverybyesya.services.RetrofitService;
 
 import java.util.List;
 
@@ -19,16 +19,12 @@ public class DeliveryRepository {
     private Call<Categories> callCategory;
     private Call<SearchResults> callSearchResult;
 
-    private final MutableLiveData<List<Category>> categoryList;
-    private final MutableLiveData<List<SearchResult>> searchResultList;
 
     public DeliveryRepository() {
         deliveryService = RetrofitService.getDeliveryService();
-        categoryList = new MutableLiveData<>();
-        searchResultList = new MutableLiveData<>();
     }
 
-    public MutableLiveData<List<Category>> getCategories() {
+    public MutableLiveData<List<Category>> getCategories(MutableLiveData<List<Category>> categoryList) {
         callCategory = deliveryService.getCategories();
         callCategory.enqueue(new Callback<Categories>() {
             @Override
@@ -48,7 +44,7 @@ public class DeliveryRepository {
         return categoryList;
     }
 
-    public MutableLiveData<List<SearchResult>> getSearchResult(String query) {
+    public MutableLiveData<List<SearchResult>> getSearchResult(String query, MutableLiveData<List<SearchResult>> searchResultList) {
 
         callSearchResult = deliveryService.getSearchResult(query);
         callSearchResult.enqueue(new Callback<SearchResults>() {

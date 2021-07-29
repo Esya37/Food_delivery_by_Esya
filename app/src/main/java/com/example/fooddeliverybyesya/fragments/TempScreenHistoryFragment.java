@@ -1,18 +1,18 @@
-package com.example.fooddeliverybyesya.Fragments;
+package com.example.fooddeliverybyesya.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import com.example.fooddeliverybyesya.R;
-import com.example.fooddeliverybyesya.ViewModels.MainActivityViewModel;
+import com.example.fooddeliverybyesya.view_models.MainActivityViewModel;
 
 public class TempScreenHistoryFragment extends Fragment {
 
@@ -32,33 +32,33 @@ public class TempScreenHistoryFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    View inflatedView;
-    Button returnTempScreenHistoryButton;
-    FragmentManager fragmentManager;
-    HomeFragment homeFragment;
-    MainActivityViewModel model;
+    private View inflatedView;
+    private Button returnTempScreenHistoryButton;
+    private MainActivityViewModel model;
+    private NavController navController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         inflatedView = inflater.inflate(R.layout.fragment_temp_screen_history, container, false);
-        fragmentManager = getActivity().getSupportFragmentManager();
 
         model = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
 
         returnTempScreenHistoryButton = inflatedView.findViewById(R.id.returnTempScreenHistoryButton);
-        returnTempScreenHistoryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        returnTempScreenHistoryButton.setOnClickListener(v -> {
 
-                model.setSelectedMenuItem(0);
-                homeFragment = HomeFragment.newInstance();
-                fragmentManager.beginTransaction().replace(R.id.fragmentContainerView2, homeFragment).commit();
+            model.setSelectedMenuItem(0);
+            navController.navigate(R.id.homeFragment);
 
-            }
         });
 
         // Inflate the layout for this fragment
         return inflatedView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(getActivity(), R.id.fragmentContainerView2);
     }
 }

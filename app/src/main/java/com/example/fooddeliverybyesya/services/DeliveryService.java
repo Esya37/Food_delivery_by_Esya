@@ -1,7 +1,7 @@
-package com.example.fooddeliverybyesya.Services;
+package com.example.fooddeliverybyesya.services;
 
-import com.example.fooddeliverybyesya.Models.Categories;
-import com.example.fooddeliverybyesya.Models.SearchResults;
+import com.example.fooddeliverybyesya.models.Categories;
+import com.example.fooddeliverybyesya.models.SearchResults;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

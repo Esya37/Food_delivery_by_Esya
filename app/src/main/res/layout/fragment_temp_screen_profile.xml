@@ -5,8 +5,8 @@
     android:id="@+id/tempScreenProfileConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F8"
-    tools:context=".Fragments.TempScreenProfileFragment">
+    android:background="@color/gray"
+    tools:context=".fragments.TempScreenProfileFragment">
 
     <TextView
         android:id="@+id/textView5"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_rounded_regular"
         android:text="@string/profile"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@id/returnTempScreenProfileButton"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_rounded_regular"
         android:text="@string/no_profile_yet"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -56,7 +56,7 @@
         android:fontFamily="@font/sf_pro_rounded_regular"
         android:gravity="center"
         android:text="@string/hit_the_orange_button_profile"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
         android:background="@drawable/button_temp_order_screen"
         android:text="@string/start_ordering"
         android:textAllCaps="false"
-        android:textColor="#F6F6F9"
+        android:textColor="@color/orange_button"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

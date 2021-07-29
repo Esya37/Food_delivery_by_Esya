@@ -5,13 +5,13 @@
     android:id="@+id/constraintLayoutMainScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.MainScreenFragment">
+    tools:context=".fragments.MainScreenFragment">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#F5F5F8"
+        android:background="@color/gray"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         app:elevation="0dp"
         app:itemHorizontalTranslationEnabled="false"

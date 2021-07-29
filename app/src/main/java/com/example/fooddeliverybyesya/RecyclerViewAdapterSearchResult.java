@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fooddeliverybyesya.Models.SearchResult;
+import com.example.fooddeliverybyesya.models.SearchResult;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -38,7 +38,7 @@ public class RecyclerViewAdapterSearchResult extends RecyclerView.Adapter<Recycl
     @Override
     public RecyclerViewAdapterSearchResult.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.recycler_view_item_search, parent, false);
-        return new RecyclerViewAdapterSearchResult.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -96,11 +96,11 @@ public class RecyclerViewAdapterSearchResult extends RecyclerView.Adapter<Recycl
         return searchResults.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView categoryNameTextView;
-        TextView mealNameTextView;
-        ImageView mealImageView;
+        private TextView categoryNameTextView;
+        private TextView mealNameTextView;
+        private ImageView mealImageView;
 
         ViewHolder(View view) {
             super(view);

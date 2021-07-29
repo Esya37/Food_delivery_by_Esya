@@ -1,4 +1,4 @@
-package com.example.fooddeliverybyesya.Fragments;
+package com.example.fooddeliverybyesya.fragments;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -10,16 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.example.fooddeliverybyesya.Models.Category;
 import com.example.fooddeliverybyesya.R;
-import com.example.fooddeliverybyesya.ViewModels.MainActivityViewModel;
-
-import java.util.List;
+import com.example.fooddeliverybyesya.view_models.MainActivityViewModel;
 
 public class LaunchScreenFragment extends Fragment {
 
@@ -43,12 +39,9 @@ public class LaunchScreenFragment extends Fragment {
         if(!hasConnection(getContext())){
             Toast.makeText(getContext(),"Check your Internet connection and try again", Toast.LENGTH_SHORT).show();
         }
-        model.getCategories().observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
-            @Override
-            public void onChanged(List<Category> categories) {
-                if(!categories.isEmpty()){
-                    navController.navigate(R.id.action_launchScreenFragment_to_firstScreenFragment);
-                }
+        model.getCategories().observe(getViewLifecycleOwner(), categories -> {
+            if(!categories.isEmpty()){
+                navController.navigate(R.id.action_launchScreenFragment_to_firstScreenFragment);
             }
         });
 
@@ -57,7 +50,7 @@ public class LaunchScreenFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_launch_screen, container, false);
     }
 
-    NavController navController;
+    private NavController navController;
     private MainActivityViewModel model;
 
     @Override

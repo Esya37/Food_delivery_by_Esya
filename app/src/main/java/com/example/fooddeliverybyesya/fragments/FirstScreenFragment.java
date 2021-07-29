@@ -1,4 +1,4 @@
-package com.example.fooddeliverybyesya.Fragments;
+package com.example.fooddeliverybyesya.fragments;
 
 import android.os.Bundle;
 
@@ -29,19 +29,14 @@ public class FirstScreenFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    View inflatedView;
-    Button startButton;
-    NavController navController;
+    private View inflatedView;
+    private Button startButton;
+    private NavController navController;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         inflatedView = inflater.inflate(R.layout.fragment_first_screen, container, false);
         startButton = inflatedView.findViewById(R.id.startButton);
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_firstScreenFragment_to_mainScreenFragment);
-            }
-        });
+        startButton.setOnClickListener(v -> navController.navigate(R.id.action_firstScreenFragment_to_mainScreenFragment));
 
         // Inflate the layout for this fragment
         return inflatedView;

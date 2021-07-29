@@ -5,8 +5,8 @@
     android:id="@+id/constraintLayoutTempScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F8"
-    tools:context=".Fragments.TempScreenOrdersFragment">
+    android:background="@color/gray"
+    tools:context=".fragments.TempScreenOrdersFragment">
 
     <TextView
         android:id="@+id/textView4"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_rounded_regular"
         android:text="@string/orders"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/returnTempScreenOrdersButton"
@@ -56,7 +56,7 @@
         android:fontFamily="@font/sf_pro_rounded_regular"
         android:gravity="center"
         android:text="@string/hit_the_orange_button"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
         android:background="@drawable/button_temp_order_screen"
         android:text="@string/start_ordering"
         android:textAllCaps="false"
-        android:textColor="#F6F6F9"
+        android:textColor="@color/orange_button"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

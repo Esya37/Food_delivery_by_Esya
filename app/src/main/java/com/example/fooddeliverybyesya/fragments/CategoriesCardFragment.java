@@ -1,4 +1,4 @@
-package com.example.fooddeliverybyesya.Fragments;
+package com.example.fooddeliverybyesya.fragments;
 
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fooddeliverybyesya.R;
-import com.example.fooddeliverybyesya.ViewModels.MainActivityViewModel;
+import com.example.fooddeliverybyesya.view_models.MainActivityViewModel;
 import com.squareup.picasso.Picasso;
 
 public class CategoriesCardFragment extends Fragment {
@@ -42,10 +42,10 @@ public class CategoriesCardFragment extends Fragment {
         }
     }
 
-    View inflatedView;
-    MainActivityViewModel model;
-    TextView categoryNameTextView;
-    ImageView categoryImageView;
+    private View inflatedView;
+    private MainActivityViewModel model;
+    private TextView categoryNameTextView;
+    private ImageView categoryImageView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         inflatedView = inflater.inflate(R.layout.fragment_categories_card, container, false);

@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayoutCategoriesCard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.CategoriesCardFragment">
+    tools:context=".fragments.CategoriesCardFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_pro_rounded_regular"
                 android:text="TextView"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

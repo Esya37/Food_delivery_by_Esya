@@ -1,20 +1,20 @@
-package com.example.fooddeliverybyesya.ViewModels;
+package com.example.fooddeliverybyesya.view_models;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.fooddeliverybyesya.Models.Category;
-import com.example.fooddeliverybyesya.Models.DeliveryRepository;
-import com.example.fooddeliverybyesya.Models.SearchResult;
+import com.example.fooddeliverybyesya.models.Category;
+import com.example.fooddeliverybyesya.models.DeliveryRepository;
+import com.example.fooddeliverybyesya.models.SearchResult;
 
 import java.util.List;
 
 public class MainActivityViewModel extends ViewModel {
 
     private final DeliveryRepository deliveryRepository;
-    private LiveData<List<Category>> categoryList;
-    private LiveData<List<SearchResult>> searchResultList;
+    private MutableLiveData<List<Category>> categoryList;
+    private MutableLiveData<List<SearchResult>> searchResultList;
     private final MutableLiveData<Integer> selectedMenuItem;
     private final MutableLiveData<Boolean> UserClickOnSearchView;
 
@@ -22,6 +22,8 @@ public class MainActivityViewModel extends ViewModel {
         deliveryRepository = new DeliveryRepository();
         selectedMenuItem = new MutableLiveData<>(0);
         UserClickOnSearchView = new MutableLiveData<>(false);
+        categoryList = new MutableLiveData<>();
+        searchResultList = new MutableLiveData<>();
     }
 
     public LiveData<Boolean> isUserClickOnSearchView() {
@@ -41,13 +43,11 @@ public class MainActivityViewModel extends ViewModel {
     }
 
     public LiveData<List<Category>> getCategories(){
-        categoryList = deliveryRepository.getCategories();
-        return categoryList;
+        return deliveryRepository.getCategories(categoryList);
     }
 
     public LiveData<List<SearchResult>> getSearchResult(String query){
-        searchResultList = deliveryRepository.getSearchResult(query);
-        return searchResultList;
+        return searchResultList = deliveryRepository.getSearchResult(query, searchResultList);
     }
 
 }
